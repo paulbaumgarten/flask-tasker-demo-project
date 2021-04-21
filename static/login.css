@@ -1,0 +1,44 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Helvetica, sans-serif;
+    display: grid;
+    background-color: #f8f8f8;
+}
+
+.container {
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+input {
+    padding: 5px 0 5px 10px;
+    margin: 5px 0 5px 0;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+input[type='submit'] {
+    background-color: rgba(59, 130, 246, 1);
+    color: white;
+    padding: 5px 10px 5px 35px;
+    margin: 5px 0 5px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 1fr;
+    display: inline-block;
+    height: 2em;
+}
+input[type='submit']:hover {
+    background-color: rgba(96, 165, 250,1);
+}
+.icon-login {
+    background:url('/static/icons/log-in-outline.svg') no-repeat left center;
+}
+.small {
+    font-size: x-small;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/login.css" media="screen"/>
+        <title>Tasks</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>My Tasks</h1>
+            <p>Please login to continue</p>
+            <form action='/login' method='POST'>
+                <div><input type='text' name='userid' id='userid' placeholder='userid'/></div>
+                <div><input type='password' name='password' id='password' placeholder='password'/></div>
+                <div><input type='submit' name='submit' class="icon-login" value="Login"/></div>
+                <driv><hr></driv>
+                <div class="small">No account? <a href="/register">Register</a></div>
+            </form>
+        </div>
+    </body>
+</html>
