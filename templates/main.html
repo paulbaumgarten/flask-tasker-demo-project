@@ -7,74 +7,45 @@
 </head>
 <body>
     <div class="pageheader">
-        <div class="titlebar">Tasks for personName</div>
+        <div class="titlebar">Tasks for {{ user.name }}</div>
     </div>
     <div class="container">
         <div class="folders">
             <div class="header">Folders</div>
             <button class="blue icon-new">New</button>
-            <div class="folderitem">folder name</div>
-            <div class="folderitem">folder name</div>
-            <div class="folderitem">folder name</div>
-            <div class="folderitem">folder name</div>
-            <div class="folderitem">folder name</div>
+            {% for folder_name in folders %}
+                {% if (loop.index-1) == folderid %}
+                    <a class="folderitem highlight" href="?folderid={{ loop.index-1 }}">{{ folder_name }}</a>
+                {% else %}
+                    <a class="folderitem" href="?folderid={{ loop.index-1 }}">{{ folder_name }}</a>
+                {% endif %}
+            {% endfor %}
             <div class="controls">
                 <button class="gray icon-settings">Settings</button>
                 <button class="gray icon-exit">Logout</button>
             </div>
         </div>
         <div class="items">
-            <div class="header">Items</div>
+            <div class="header">Summary</div>
             <button class="blue icon-new">New</button>
-            <div class="itempreview">
-                <div class="itempreviewheader">
-                    item title
-                </div>
-                <div class="itempreviewtext">
-                    item text lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. 
-                </div>
-                <div class="itempreviewtime">xx:xx xx/xx/xxxx</div>
-            </div>
-            <div class="itempreview">
-                <div class="itempreviewheader">
-                    item title
-                </div>
-                <div class="itempreviewtext">
-                    item text lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. 
-                </div>
-                <div class="itempreviewtime">xx:xx xx/xx/xxxx</div>
-            </div>
-            <div class="itempreview">
-                <div class="itempreviewheader">
-                    item title
-                </div>
-                <div class="itempreviewtext">
-                    item text lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. 
-                </div>
-                <div class="itempreviewtime">xx:xx xx/xx/xxxx</div>
-            </div>
-            <div class="itempreview">
-                <div class="itempreviewheader">
-                    item title
-                </div>
-                <div class="itempreviewtext">
-                    item text lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. 
-                </div>
-                <div class="itempreviewtime">xx:xx xx/xx/xxxx</div>
-            </div>
-            <div class="itempreview">
-                <div class="itempreviewheader">
-                    item title
-                </div>
-                <div class="itempreviewtext">
-                    item text lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. 
-                </div>
-                <div class="itempreviewtime">xx:xx xx/xx/xxxx</div>
-            </div>
+            {% for task in tasks %}
+                {% if task.folderid == folderid %}
+                    <a class="itempreview" href="?folderid={{ folderid }}&id={{ task['id']}}">
+                        <div class="itempreviewheader">
+                            {{ task['title'] }}
+                        </div>
+                        <div class="itempreviewtext">
+                            {{ task['preview'] }} 
+                        </div>
+                        <div class="itempreviewtime">{{ task['due'] }}</div>
+                    </a>
+                {% endif %}
+            {% endfor %}
         </div>
         <div class="main">
+            {% if id is defined %}
             <form method="POST" enctype="multipart/form-data" action="">
-                <div class="maintitle"><input type="text" name="title" value="" placeholder="Task title" class="tasktitle"></div>
+                <div class="maintitle"><input type="text" name="title" value="{{ tasks[id].title }}" placeholder="Task title" class="tasktitle"></div>
                 <div class="two-columns">
                     <div><label for="due">Due</label></div>
                     <input type="date" name="due" value="" placeholder="">
@@ -85,8 +56,8 @@
                     <div><label for="category">Category</label></div>
                     <select name="category">
                         <option>Homework</option>
-                        <option>Summative assignment</option>
-                        <option>Summative test</option>
+                        <option>Assignment</option>
+                        <option>Test</option>
                     </select>                    
                     <div><label for="priority">Priority</label></div>
                     <select name="priority">
@@ -110,6 +81,7 @@
                 <input type="button" name="button-share" class="gray icon-share" value=" ">
                 <input type="button" name="button-print" class="gray icon-print" value=" ">
             </form>
+            {% endif %}
     </div>
     </div>
 </body>

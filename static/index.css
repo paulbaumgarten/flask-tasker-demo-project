@@ -2,8 +2,8 @@
 /* CORE STRUCTURE */
 
 html, body {
-    margin: 0;
     padding: 0;
+    margin: 0;
     height: 100%;
     font-family: Helvetica, sans-serif;
     overflow-y:hidden;
@@ -76,10 +76,18 @@ html, body {
     border-radius: 3px;
     border: 1px solid #ccc;
     background:url('/static/icons/folder-outline.svg') no-repeat left center;
+    /* the following are to make the <a> behave like a <div> */
+    display: block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
 }
 
 .folderitem:hover {
     background-color: #f0f0f0;
+}
+.highlight {
+    background-color: rgba(254, 243, 199,1);
 }
 
 /* ITEMS */
@@ -103,6 +111,11 @@ html, body {
     margin: 5px 5px 5px 5px;
     border-radius: 3px;
     border: 1px solid #ccc;
+    /* the following are to make the <a> behave like a <div> */
+    display: block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
 }
 
 .itempreview:hover {
@@ -121,6 +134,9 @@ html, body {
     font-size: x-small;
     color: blue;
 }
+.highlight {
+    background-color: rgba(254, 243, 199,1);
+}
 
 /* MAIN AREA */
 
@@ -128,6 +144,7 @@ html, body {
     grid-area: main; 
     overflow-y: auto;
     padding-bottom: 5em;
+    padding-right: 10px;
 }
 
 .maintitle {
@@ -236,11 +253,23 @@ button.gray:hover, input[type='button'].gray:hover, input[type='submit'].gray:ho
 input {
     padding: 2px;
     margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
 }
 
 select {
     padding: 2px;
     margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
+}
+
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #777;
 }
 
 /* ICONS */

@@ -1,9 +1,15 @@
-from flask import Flask
+"""
+1. Create basic Flask outline
+2. Get first Flask server working 
+"""
+
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 
 @app.route('/')
 def index_page():
+    print("[index_page] Got visited by someone at "+request.remote_addr)
     return "Index page"
 
 @app.route("/register")
@@ -19,7 +25,7 @@ def logout_page():
     return 'Logout page'
 
 @app.route("/main")
-def feed_page():
+def main_page():
     return 'Main page'
 
 @app.route("/profile/<userid>")

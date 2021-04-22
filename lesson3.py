@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, send_file
+from flask.templating import render_template
 import flask_login
 
 # Setup
@@ -44,8 +45,9 @@ def unauthorized_handler():
 
 @app.route('/')
 def index_page():
+    print("[index_page] Got visited by someone at "+request.remote_addr)
     if flask_login.current_user.is_authenticated:
-        return redirect('/feed')
+        return redirect('/main')
     else:
         return redirect('/login')
 
@@ -55,7 +57,7 @@ def register_page():
 
 @app.route("/login", methods=['GET'])
 def login_page():
-    return send_file("login.html")
+    return render_template("login.html", alert="")
 
 @app.route("/login", methods=['POST'])
 def login_request():
@@ -64,19 +66,19 @@ def login_request():
         user = User()
         user.id = userid
         flask_login.login_user(user)
-        return redirect('/feed')
-    return 'Bad login'
+        return redirect('/main')
+    return render_template("login.html", alert="Bad login attempt. Try again.")
 
 @app.route("/logout")
 def logout():
     flask_login.logout_user()
     return redirect('/')
 
-@app.route("/feed")
+@app.route("/main")
 @flask_login.login_required
-def feed_page():
+def main_page():
     iam = flask_login.current_user.id
-    return f'Feed page for {iam}'
+    return render_template("main.html")
 
 @app.route("/profile/<userid>")
 @flask_login.login_required
