@@ -1,13 +1,7 @@
-"""
-1. Write HTML main.html and login.html
-2. Use render_template() to send the HTML files
-3. Redirect index -> login
-"""
-
 from flask import Flask, render_template, redirect, request
 import flask_login
 from datetime import datetime
-import json
+import csv
 
 app = Flask(__name__)
 
@@ -31,23 +25,23 @@ def logout_page():
 
 @app.route("/main")
 def main_page():
-    id = 3
+    id = '3'
     if 'id' in request.values:
-        id = int(request.values['id'])
-    folderid = 3
+        id = request.values['id']
+    folderid = '3'
     if 'folderid' in request.values:
-        folderid = int(request.values['folderid'])
+        folderid = request.values['folderid']
     folders = ["CompSci", "Economics", "English", "History", "Math", "Science"]
-    user = { 'name': 'Paul Baumgarten' }
+    user = { 'name': 'Paul Baumgarten', "userid": "pbaumgarten" }
     items = []
-    with open("demo.json") as f:
-        items = json.loads(f.read())
-    return render_template("main.html", folders=folders, tasks=items, user=user, folderid=folderid, id=id)
+    with open("demo.csv") as f:
+        items = list(csv.DictReader(f, delimiter=","))
+    print(items)
+    return render_template("main-stage2.html", folders=folders, tasks=items, user=user, folderid=folderid, id=id)
 
 @app.route("/profile/<userid>")
 def profile_page(userid):
     return f'Profile page for {userid}'
-
 
 app.run(host='0.0.0.0', port=80, debug=True)
 

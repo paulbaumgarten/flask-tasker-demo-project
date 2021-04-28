@@ -14,10 +14,10 @@
             <div class="header">Folders</div>
             <button class="blue icon-new">New</button>
             {% for folder_name in folders %}
-                {% if (loop.index-1) == folderid %}
-                    <a class="folderitem highlight" href="?folderid={{ loop.index-1 }}">{{ folder_name }}</a>
+                {% if loop.index0 == folderid %}
+                    <a class="folderitem highlight" href="?folderid={{ loop.index0 }}">{{ folder_name }}</a>
                 {% else %}
-                    <a class="folderitem" href="?folderid={{ loop.index-1 }}">{{ folder_name }}</a>
+                    <a class="folderitem" href="?folderid={{ loop.index0 }}">{{ folder_name }}</a>
                 {% endif %}
             {% endfor %}
             <div class="controls">
@@ -29,6 +29,7 @@
             <div class="header">Summary</div>
             <button class="blue icon-new">New</button>
             {% for task in tasks %}
+                <!-- {{ task }} -->
                 {% if task.folderid == folderid %}
                     <a class="itempreview" href="?folderid={{ folderid }}&id={{ task['id']}}">
                         <div class="itempreviewheader">
@@ -48,32 +49,32 @@
                 <div class="maintitle"><input type="text" name="title" value="{{ tasks[id].title }}" placeholder="Task title" class="tasktitle"></div>
                 <div class="two-columns">
                     <div><label for="due">Due</label></div>
-                    <input type="date" name="due" value="" placeholder="">
+                    <input type="date" name="due" value="{{ tasks[id].due }}" placeholder="">
                     <div><label for="reminder">Reminder</label></div>
-                    <input type="date" name="due" value="" placeholder="">
+                    <input type="date" name="reminder" value="{{ tasks[id].reminder }}" placeholder="">
                     <div><label for="created">Created</label></div>
-                    <input readonly type="date" name="due" value="" placeholder="Task title">
+                    <input readonly type="date" name="created" value="{{ tasks[id].created }}" placeholder="">
                     <div><label for="category">Category</label></div>
-                    <select name="category">
-                        <option>Homework</option>
-                        <option>Assignment</option>
-                        <option>Test</option>
+                    <select name="category" value="{{ tasks[id].category }}">
+                        <option {{ "selected='selected'" if tasks[id].category == 'Homework' else "" }}>Homework</option>
+                        <option {{ "selected='selected'" if tasks[id].category == 'Assignment' else "" }}>Assignment</option>
+                        <option {{ "selected='selected'" if tasks[id].category == 'Test' else "" }}>Test</option>
                     </select>                    
                     <div><label for="priority">Priority</label></div>
-                    <select name="priority">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select name="priority" value="{{ tasks[id].priority }}">
+                        <option {{ "selected='selected'" if tasks[id].priority == 1 else "" }}>1</option>
+                        <option {{ "selected='selected'" if tasks[id].priority == 2 else "" }}>2</option>
+                        <option {{ "selected='selected'" if tasks[id].priority == 3 else "" }}>3</option>
                     </select>
                     <div><label for="status">Status</label></div>
-                    <select name="status">
-                        <option>Unstarted</option>
-                        <option>In progress</option>
-                        <option>Waiting on response</option>
+                    <select name="status" value="{{ tasks[id].status }}">
+                        <option {{ "selected='selected'" if tasks[id].status == "Unstarted" else "" }}>Unstarted</option>
+                        <option {{ "selected='selected'" if tasks[id].status == "In progress" else "" }}>In progress</option>
+                        <option {{ "selected='selected'" if tasks[id].status == "Waiting on response" else "" }}>Waiting on response</option>
                     </select>
                 </div>
                 <div class="maintext">
-                    <textarea>Note text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pharetra lacinia pretium. Suspendisse id arcu magna. Nullam bibendum purus justo, et laoreet purus tempus in. Curabitur eget tortor fermentum, feugiat tortor vitae, porttitor risus. Vivamus sed enim nisi. Aliquam auctor velit quam, ut laoreet enim cursus et. Vestibulum dictum at ligula at tristique. Ut pretium erat non est luctus, in tempor risus ullamcorper. Nullam sollicitudin, lorem eu blandit finibus, sapien enim pharetra dui, vel rhoncus libero dolor sed leo.</textarea>
+                    <textarea name="notes">{{ tasks[id].notes }}</textarea>
                 </div>
                 <input type="submit" name="submit-save" class="blue icon-save" value="Save update">
                 <input type="submit" name="submit-close" class="green icon-complete" value="Complete & close">

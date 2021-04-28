@@ -1,8 +1,3 @@
-"""
-1. Create basic Flask outline
-2. Get first Flask server working 
-"""
-
 from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)

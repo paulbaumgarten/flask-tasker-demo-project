@@ -1,0 +1,7 @@
+"id","folderid","title","preview","due","reminder","created","category","priority","status","notes","link"
+0,0,"Sensors project","Lots of work to do here","2021-06-11","","","Assignment",1,"","",""
+1,0,"Logic gates questions 3.3 3.4","","2021-01-27","","","Homework",1,"","",""
+2,0,"Logic gates questions set 1","Complete questions 1,2,3 from chapter 99","2021-01-15","","","Homework",1,"","",""
+3,0,"Unit 2 test","","2021-01-08","","","Test",1,"","Scheduled for in our lesson on Friday 8 January. I've reattached the past paper questions for your review, and this time included the mark schemes.",""
+4,0,"Theme park scenario","Complete questions 1,2,3 from chapter 99","2020-12-09","","","Assignment",1,"","With reference to lesson 11 notes of Computational Thinking, analyse the pre-release and \n1. Draw a structure diagram for it\n2. Write pseudo code or a flowchart for one of the sub-tasks you identify.\n3. You do **NOT** need to write any programming for this scenario at this time.",""
+5,0,"Validation algorithm (isbn/luhn/hkid)","Complete questions 1,2,3 from chapter 99","2020-12-01","","","Homework",1,"","With the return to zoom lessons, I'm going to restore the practice of regular submission of class work to Classroom so I can see what you are able to get accomplished each lesson. Please upload your progress on your isbn/credit card/hkid validation algorithm here. It doesn't matter if it is incomplete, it just helps me keep track of where everyone is at. Thank you.",""
