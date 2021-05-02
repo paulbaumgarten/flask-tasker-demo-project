@@ -14,11 +14,7 @@
             <div class="header">Folders</div>
             <button class="blue icon-new" id="new_folder_button">New</button>
             {% for folder in folders %}
-                {% if folder.id == folderid %}
-                    <a class="folderitem highlight" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
-                {% else %}
-                    <a class="folderitem" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
-                {% endif %}
+                <a class="folderitem" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
             {% endfor %}
             <div class="controls">
                 <button class="gray icon-settings">Settings</button>
@@ -29,22 +25,14 @@
             <div class="header">Summary</div>
             <button class="blue icon-new" id="new_task_button">New</button>
             {% for task in tasks %}
-                <!-- {{ task }} -->
-                {% if task.folderid == folderid %}
-                    <a class="itempreview" href="?folderid={{ folderid }}&id={{ task['id']}}">
-                        <div class="itempreviewheader">
-                            {{ task['title'] }}
-                        </div>
-                        <div class="itempreviewtext">
-                            {{ task['notes'][:50] }}... 
-                        </div>
-                        <div class="itempreviewtime">{{ task['due'] }}</div>
-                    </a>
-                {% endif %}
+                <a class="itempreview" href="?folderid={{ task['folderid'] }}&id={{ task['id'] }}">
+                    <div class="itempreviewheader">{{ task['title'] }}</div>
+                    <div class="itempreviewtext">{{ task['notes'][:50] }}...</div>
+                    <div class="itempreviewtime">{{ task['due'] }}</div>
+                </a>
             {% endfor %}
         </div>
         <div class="main">
-            {% if id is defined %}
             <form method="POST" enctype="multipart/form-data" action="/save_task">
                 <div class="maintitle"><input type="text" name="title" value="{{ maintask.title }}" placeholder="Task title" class="tasktitle"></div>
                 <div class="two-columns">
@@ -85,7 +73,6 @@
                 <input type="button" name="button-share" class="gray icon-share" value=" ">
                 <input type="button" name="button-print" class="gray icon-print" value=" ">
             </form>
-            {% endif %}
         </div>
     </div>
     <script type="text/javascript" src="/static/main.js"></script>

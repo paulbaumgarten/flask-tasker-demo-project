@@ -18,6 +18,7 @@ html, body {
       "folders items main"
 }
 
+/* Special rule that will change to a 1 column layout when on devices of screen resolution less than 800 pixels wide */
 @media screen and (max-width: 800px) {
     .container {
         grid-template-columns: 1fr;
@@ -138,7 +139,7 @@ html, body {
     background-color: rgba(254, 243, 199,1);
 }
 
-/* MAIN AREA */
+/* MAIN TASK FORM */
 
 .main { 
     grid-area: main; 
@@ -158,9 +159,7 @@ html, body {
     margin: 5px 5px 5px 5px;
 }
 
-
-
-/* TASK FORM FORMATTING */
+/* FORM FORMATTING */
 
 .two-columns {
     display: grid;
@@ -186,7 +185,7 @@ html, body {
     
 }
 
-/* ELEMENT DEFAULT STYLES */
+/* INPUT STYLES */
 
 button {
     background-color: rgba(59, 130, 246, 1);
@@ -248,7 +247,6 @@ button.gray, input[type='button'].gray, input[type='submit'].gray{
 button.gray:hover, input[type='button'].gray:hover, input[type='submit'].gray:hover {
     background-color: rgba(156, 163, 175,1);
 }
-
 
 input {
     padding: 2px;
