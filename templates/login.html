@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/static/login.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/static/login.css" media="screen">
         <title>Tasker</title>
     </head>
     <body>
@@ -12,12 +12,12 @@
             <p class="alert">{{ alert }}</p>
             {% endif %}
             <p>Please login to continue</p>
-            <form action='/login' method='POST'>
-                <div><input type='text' name='userid' placeholder='userid'/></div>
-                <div><input type='password' name='password' placeholder='password'/></div>
-                <div><input type='submit' name='submit' class="icon-login" value="Login"/></div>
-                <driv><hr></driv>
-                <div class="small">No account? <a href="/register">Register</a></div>
+            <form action="/login" method="POST">
+                <div><input type="text" name="userid" placeholder="userid"></div>
+                <div><input type="password" name="password" placeholder="password"></div>
+                <div><input type="submit" name="submit" value="Login" class="icon-login"></div>
+                <div><hr></div>
+                <div class="small">No account? <a href="/register">Register!</a></div>
             </form>
         </div>
     </body>

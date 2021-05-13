@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/static/index.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/static/main.css" media="screen"/>
     <title>Tasks</title>
 </head>
 <body>
@@ -18,17 +18,21 @@
             {% endfor %}
             <div class="controls">
                 <button class="gray icon-settings">Settings</button>
-                <button class="gray icon-exit" id="logout_button">Logout</button>
+                <button class="gray icon-exit">Logout</button>
             </div>
         </div>
         <div class="items">
-            <div class="header">Summary</div>
+            <div class="header">Items</div>
             <button class="blue icon-new" id="new_task_button">New</button>
             {% for task in tasks %}
-                <a class="itempreview" href="?folderid={{ task['folderid'] }}&id={{ task['id'] }}">
-                    <div class="itempreviewheader">{{ task['title'] }}</div>
-                    <div class="itempreviewtext">{{ task['notes'][:50] }}...</div>
-                    <div class="itempreviewtime">{{ task['due'] }}</div>
+                <a class="itempreview" href="?folderid={{ task.folderid }}&id={{ task.id }}">
+                    <div class="itempreviewheader">
+                        {{ task.title }}
+                    </div>
+                    <div class="itempreviewtext">
+                        {{ task.preview }}
+                    </div>
+                    <div class="itempreviewtime">{{ task.due }}</div>
                 </a>
             {% endfor %}
         </div>
@@ -39,26 +43,26 @@
                     <div><label for="due">Due</label></div>
                     <input type="date" name="due" value="{{ maintask.due }}" placeholder="">
                     <div><label for="reminder">Reminder</label></div>
-                    <input type="date" name="reminder" value="{{ maintask.reminder }}" placeholder="">
+                    <input type="date" name="reminder" value="{{ maintask.remainder }}" placeholder="">
                     <div><label for="created">Created</label></div>
                     <input readonly type="date" name="created" value="{{ maintask.created }}" placeholder="">
                     <div><label for="category">Category</label></div>
                     <select name="category" value="{{ maintask.category }}">
-                        <option {{ "selected='selected'" if maintask.category == 'Homework' else "" }}>Homework</option>
-                        <option {{ "selected='selected'" if maintask.category == 'Assignment' else "" }}>Assignment</option>
-                        <option {{ "selected='selected'" if maintask.category == 'Test' else "" }}>Test</option>
+                        <option {{ "selected" if maintask.category=='Homework' else "" }}>Homework</option>
+                        <option {{ "selected" if maintask.category=='Assignment' else "" }}>Assignment</option>
+                        <option {{ "selected" if maintask.category=='Test' else "" }}>Test</option>
                     </select>                    
                     <div><label for="priority">Priority</label></div>
                     <select name="priority" value="{{ maintask.priority }}">
-                        <option {{ "selected='selected'" if maintask.priority == 1 else "" }}>1</option>
-                        <option {{ "selected='selected'" if maintask.priority == 2 else "" }}>2</option>
-                        <option {{ "selected='selected'" if maintask.priority == 3 else "" }}>3</option>
+                        <option {{ "selected" if maintask.priority==1 else "" }}>1</option>
+                        <option {{ "selected" if maintask.priority==2 else "" }}>2</option>
+                        <option {{ "selected" if maintask.priority==3 else "" }}>3</option>
                     </select>
                     <div><label for="status">Status</label></div>
                     <select name="status" value="{{ maintask.status }}">
-                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}>Unstarted</option>
-                        <option {{ "selected='selected'" if maintask.status == "In progress" else "" }}>In progress</option>
-                        <option {{ "selected='selected'" if maintask.status == "Waiting on response" else "" }}>Waiting on response</option>
+                        <option {{ "selected" if maintask.status=='Unstarted' else "" }}>Unstarted</option>
+                        <option {{ "selected" if maintask.status=='In progress' else "" }}>In progress</option>
+                        <option {{ "selected" if maintask.status=='Waiting on response' else "" }}>Waiting on response</option>
                     </select>
                 </div>
                 <div class="maintext">
